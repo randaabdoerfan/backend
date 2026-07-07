@@ -83,6 +83,8 @@ io.on("connection", (socket) => {
 });
 
 
+app.get("/", (req, res) => res.json({ status: "ok", message: "FixFlow API is running" }));
+
 app.use("/users", userRoutes);
 app.use("/documents", documentRoutes);
 app.use("/teams", teamRoutes);
@@ -95,6 +97,7 @@ app.use("/activity-logs", activityLogRoutes);
 app.use(handleError);
 
 
-server.listen(8001, () => {
-    console.log(` Server running on port ${8001}`);
+const PORT = process.env.PORT || 8001;
+server.listen(PORT, () => {
+    console.log(` Server running on port ${PORT}`);
 });
