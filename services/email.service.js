@@ -2,7 +2,8 @@ const transporter = require('../config/email.config')
 
 exports.WelcomeAndSendVerifcation = async (email, username, token) => {
     try {
-        const link = `http://localhost:8001/users/verify/${token}`
+        const base = process.env.BASE_URL || 'http://localhost:8001';
+        const link = `${base}/users/verify/${token}`
         await transporter.sendMail({
             from: `"Incident Management System" <${process.env.email_user}>`,
             to: email,
@@ -104,7 +105,8 @@ exports.ticketAssignedEmail = async (email, username, ticketTitle) => {
 
 exports.resetPasswordEmail = async (email, username, token) => {
     try {
-        const link = `http://localhost:8001/users/resetpassword/${token}`
+        const base = process.env.BASE_URL || 'http://localhost:8001';
+        const link = `${base}/users/resetpassword/${token}`
         await transporter.sendMail({
             from: `"Incident Management System" <${process.env.email_user}>`,
             to: email,

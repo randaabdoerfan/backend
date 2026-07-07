@@ -47,11 +47,13 @@ exports.verifyEmail = async (req, res) => {
             maxAge: 7 * 24 * 60 * 60 * 1000,
         });
 
-        res.redirect(`http://localhost:3000/auth/login?verified=true&token=${accessToken}`);
+        const frontend = process.env.FRONTEND_URL || 'http://localhost:3000';
+        res.redirect(`${frontend}/auth/login?verified=true&token=${accessToken}`);
 
     } catch (err) {
         console.log(err);
-        res.redirect("http://localhost:3000/auth/login?verified=false");
+        const frontend = process.env.FRONTEND_URL || 'http://localhost:3000';
+        res.redirect(`${frontend}/auth/login?verified=false`);
     }
 };
 

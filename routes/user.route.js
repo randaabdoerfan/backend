@@ -47,9 +47,11 @@ router.get('/resetpassword/:token', (req, res) => {
   try {
     jwt.verify(token, process.env.SECERT_KEY);
   } catch {
-    return res.redirect('http://localhost:3000/auth/login?reset=expired');
+    const frontend = process.env.FRONTEND_URL || 'http://localhost:3000';
+    return res.redirect(`${frontend}/auth/login?reset=expired`);
   }
-  res.redirect(`http://localhost:3000/auth/resetpassword/${token}`);
+  const frontend = process.env.FRONTEND_URL || 'http://localhost:3000';
+  res.redirect(`${frontend}/auth/resetpassword/${token}`);
 });
 router.post('/resetpassword/:token', verifyToken('reset'), confirmResetPassword);
 
