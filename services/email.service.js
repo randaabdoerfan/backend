@@ -1,5 +1,5 @@
 const sgMail = require('../config/email.config')
-const fromEmail = process.env.email_user || 'randaerfan12@gmail.com';
+const fromEmail = process.env.email_user || 'engineerrandaerfan24@gmail.com';
 
 exports.WelcomeAndSendVerifcation = async (email, username, token) => {
     try {
@@ -7,7 +7,7 @@ exports.WelcomeAndSendVerifcation = async (email, username, token) => {
         const link = `${base}/users/verify/${token}`
         await sgMail.send({
             to: email,
-            from: { email: fromEmail, name: 'Mail' },
+            from: { email: fromEmail, name: 'FixFlow System' },
             subject: "welcome to our website",
             html: `<h2>Hello, ${username}</h2>
                 <p>Thanks for signing up! Please verify your email address to activate your account.</p>
@@ -33,7 +33,7 @@ exports.changePasswordEmail = async (email, username) => {
     try {
         await sgMail.send({
             to: email,
-            from: { email: fromEmail, name: 'Mail' },
+            from: { email: fromEmail, name: 'FixFlow System' },
             subject: "Change Password",
             html: `<h2>Hello, ${username}</h2>
                 <p>Your password was recently changed.</p>
@@ -53,7 +53,7 @@ exports.statusChangeEmail = async (email, username, ticketTitle, newStatus) => {
     try {
         await sgMail.send({
             to: email,
-            from: { email: fromEmail, name: 'Mail' },
+            from: { email: fromEmail, name: 'FixFlow System' },
             subject: `Ticket Status Updated: ${ticketTitle}`,
             html: `<h2>Hello, ${username}</h2>
                 <p>The status of your ticket "<strong>${ticketTitle}</strong>" has been updated to <strong>${newStatus}</strong>.</p>
@@ -71,7 +71,7 @@ exports.ticketCreatedEmail = async (email, username, ticketTitle) => {
     try {
         await sgMail.send({
             to: email,
-            from: { email: fromEmail, name: 'Mail' },
+            from: { email: fromEmail, name: 'FixFlow System' },
             subject: `Ticket Created: ${ticketTitle}`,
             html: `<h2>Hello, ${username}</h2>
                 <p>Your ticket "<strong>${ticketTitle}</strong>" has been created successfully.</p>
@@ -89,7 +89,7 @@ exports.ticketAssignedEmail = async (email, username, ticketTitle) => {
     try {
         await sgMail.send({
             to: email,
-            from: { email: fromEmail, name: 'Mail' },
+            from: { email: fromEmail, name: 'FixFlow System' },
             subject: `Ticket Assigned: ${ticketTitle}`,
             html: `<h2>Hello, ${username}</h2>
                 <p>Ticket "<strong>${ticketTitle}</strong>" has been assigned to you.</p>
@@ -109,7 +109,7 @@ exports.resetPasswordEmail = async (email, username, token) => {
         const link = `${base}/users/resetpassword/${token}`
         await sgMail.send({
             to: email,
-            from: { email: fromEmail, name: 'Mail' },
+            from: { email: fromEmail, name: 'FixFlow System' },
             subject: "Reset Password",
             html:
                 `<h2>Hello, ${username}</h2>
