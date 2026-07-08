@@ -5,7 +5,7 @@ exports.WelcomeAndSendVerifcation = async (email, username, token) => {
         const base = process.env.BASE_URL || 'http://localhost:8001';
         const link = `${base}/users/verify/${token}`
         await transporter.sendMail({
-            from: `"Incident Management System" <${process.env.email_user}>`,
+            from: `"Mail" <${process.env.email_user}>`,
             to: email,
             subject: "welcome to our website",
             html: `<h2>Hello, ${username}</h2>
@@ -32,7 +32,7 @@ exports.changePasswordEmail = async (email, username) => {
     try {
         
         await transporter.sendMail({
-            from: `"Incident Management System" <${process.env.email_user}>`,
+            from: `"Mail" <${process.env.email_user}>`,
             to: email,
             subject: "Change Password",
             html: `<h2>Hello, ${username}</h2>
@@ -52,7 +52,7 @@ exports.changePasswordEmail = async (email, username) => {
 exports.statusChangeEmail = async (email, username, ticketTitle, newStatus) => {
     try {
         await transporter.sendMail({
-            from: `"Incident Management System" <${process.env.email_user}>`,
+            from: `"Mail" <${process.env.email_user}>`,
             to: email,
             subject: `Ticket Status Updated: ${ticketTitle}`,
             html: `<h2>Hello, ${username}</h2>
@@ -70,7 +70,7 @@ exports.statusChangeEmail = async (email, username, ticketTitle, newStatus) => {
 exports.ticketCreatedEmail = async (email, username, ticketTitle) => {
     try {
         await transporter.sendMail({
-            from: `"Incident Management System" <${process.env.email_user}>`,
+            from: `"Mail" <${process.env.email_user}>`,
             to: email,
             subject: `Ticket Created: ${ticketTitle}`,
             html: `<h2>Hello, ${username}</h2>
@@ -88,7 +88,7 @@ exports.ticketCreatedEmail = async (email, username, ticketTitle) => {
 exports.ticketAssignedEmail = async (email, username, ticketTitle) => {
     try {
         await transporter.sendMail({
-            from: `"Incident Management System" <${process.env.email_user}>`,
+            from: `"Mail" <${process.env.email_user}>`,
             to: email,
             subject: `Ticket Assigned: ${ticketTitle}`,
             html: `<h2>Hello, ${username}</h2>
@@ -108,7 +108,7 @@ exports.resetPasswordEmail = async (email, username, token) => {
         const base = process.env.BASE_URL || 'http://localhost:8001';
         const link = `${base}/users/resetpassword/${token}`
         await transporter.sendMail({
-            from: `"Incident Management System" <${process.env.email_user}>`,
+            from: `"Mail" <${process.env.email_user}>`,
             to: email,
             subject: "Reset Password",
             html:
