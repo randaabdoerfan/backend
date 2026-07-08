@@ -1,12 +1,13 @@
-const transporter = require('../config/email.config')
+const sgMail = require('../config/email.config')
+const fromEmail = process.env.email_user || 'randaerfan12@gmail.com';
 
 exports.WelcomeAndSendVerifcation = async (email, username, token) => {
     try {
         const base = process.env.BASE_URL || 'http://localhost:8001';
         const link = `${base}/users/verify/${token}`
-        await transporter.sendMail({
-            from: `"Mail" <${process.env.email_user}>`,
+        await sgMail.send({
             to: email,
+            from: { email: fromEmail, name: 'Mail' },
             subject: "welcome to our website",
             html: `<h2>Hello, ${username}</h2>
                 <p>Thanks for signing up! Please verify your email address to activate your account.</p>
@@ -30,10 +31,9 @@ exports.WelcomeAndSendVerifcation = async (email, username, token) => {
 
 exports.changePasswordEmail = async (email, username) => {
     try {
-        
-        await transporter.sendMail({
-            from: `"Mail" <${process.env.email_user}>`,
+        await sgMail.send({
             to: email,
+            from: { email: fromEmail, name: 'Mail' },
             subject: "Change Password",
             html: `<h2>Hello, ${username}</h2>
                 <p>Your password was recently changed.</p>
@@ -51,9 +51,9 @@ exports.changePasswordEmail = async (email, username) => {
 
 exports.statusChangeEmail = async (email, username, ticketTitle, newStatus) => {
     try {
-        await transporter.sendMail({
-            from: `"Mail" <${process.env.email_user}>`,
+        await sgMail.send({
             to: email,
+            from: { email: fromEmail, name: 'Mail' },
             subject: `Ticket Status Updated: ${ticketTitle}`,
             html: `<h2>Hello, ${username}</h2>
                 <p>The status of your ticket "<strong>${ticketTitle}</strong>" has been updated to <strong>${newStatus}</strong>.</p>
@@ -69,9 +69,9 @@ exports.statusChangeEmail = async (email, username, ticketTitle, newStatus) => {
 
 exports.ticketCreatedEmail = async (email, username, ticketTitle) => {
     try {
-        await transporter.sendMail({
-            from: `"Mail" <${process.env.email_user}>`,
+        await sgMail.send({
             to: email,
+            from: { email: fromEmail, name: 'Mail' },
             subject: `Ticket Created: ${ticketTitle}`,
             html: `<h2>Hello, ${username}</h2>
                 <p>Your ticket "<strong>${ticketTitle}</strong>" has been created successfully.</p>
@@ -87,9 +87,9 @@ exports.ticketCreatedEmail = async (email, username, ticketTitle) => {
 
 exports.ticketAssignedEmail = async (email, username, ticketTitle) => {
     try {
-        await transporter.sendMail({
-            from: `"Mail" <${process.env.email_user}>`,
+        await sgMail.send({
             to: email,
+            from: { email: fromEmail, name: 'Mail' },
             subject: `Ticket Assigned: ${ticketTitle}`,
             html: `<h2>Hello, ${username}</h2>
                 <p>Ticket "<strong>${ticketTitle}</strong>" has been assigned to you.</p>
@@ -107,9 +107,9 @@ exports.resetPasswordEmail = async (email, username, token) => {
     try {
         const base = process.env.BASE_URL || 'http://localhost:8001';
         const link = `${base}/users/resetpassword/${token}`
-        await transporter.sendMail({
-            from: `"Mail" <${process.env.email_user}>`,
+        await sgMail.send({
             to: email,
+            from: { email: fromEmail, name: 'Mail' },
             subject: "Reset Password",
             html:
                 `<h2>Hello, ${username}</h2>
