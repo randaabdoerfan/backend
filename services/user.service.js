@@ -89,7 +89,7 @@ exports.getDashboardStats = async () => {
     const agents = await countByRole('agent');
     const managers = await countByRole('manager');
     const admins = await countByRole('admin');
-    const ticketCounts = await getDashboardCounts();
+    const ticketCounts = await ticketRepo.getDashboardCounts();
     return { users: { total, users, agents, managers, admins }, tickets: ticketCounts };
 };
 

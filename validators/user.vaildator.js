@@ -14,11 +14,9 @@ const userValidator = Joi.object({
 
     email: Joi.string()
         .email()
-        .pattern(/^[a-zA-Z0-9._%+-]+@gmail\.com$/)
         .required()
         .messages({
             "string.email": "Please provide a valid email",
-            "string.pattern.base": "Please provide a valid Gmail address",
             "any.required": "Email is required"
         }),
 
