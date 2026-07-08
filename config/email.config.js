@@ -3,8 +3,8 @@ const dns = require('dns');
 
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
-    port: 465,
-    secure: true,
+  port: 587,
+  secure: false,
     auth: {
         user: process.env.email_user || 'randaerfan12@gmail.com',
         pass: process.env.email_password || 'jebk lvnj ptpv oivo'
@@ -13,7 +13,10 @@ const transporter = nodemailer.createTransport({
     greetingTimeout: 10000,
     socketTimeout: 15000,
     lookup: (hostname, options, cb) => {
-        dns.lookup(hostname, { ...options, family: 4 }, cb);
+        dns.resolve4(hostname, (err, addresses) => {
+            if (err) return cb(err);
+            cb(null, addresses[0], 4);
+        });
     }
 })
 
