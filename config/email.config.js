@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer')
+const dns = require('dns');
 
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
@@ -10,7 +11,10 @@ const transporter = nodemailer.createTransport({
     },
     connectionTimeout: 10000,
     greetingTimeout: 10000,
-    socketTimeout: 15000
+    socketTimeout: 15000,
+    lookup: (hostname, options, cb) => {
+        dns.lookup(hostname, { ...options, family: 4 }, cb);
+    }
 })
 
 module.exports = transporter
